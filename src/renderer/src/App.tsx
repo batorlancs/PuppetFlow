@@ -1,39 +1,18 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger
-} from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
+import { useState } from 'react'
 
 function App(): JSX.Element {
-  return (
-    <div className="h-screen w-full flex items-center justify-center">
-      <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button variant="outline">Show Dialog</Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove
-              your data from our servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </div>
-  )
+    const [url, setUrl] = useState('https://www.google.com')
+
+    return (
+        <div className="h-screen w-full flex items-center justify-center">
+            <div className="h-12 w-full flex items-center justify-center">
+                <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                <Button>Go</Button>
+            </div>
+            <webview src={url} className="h-full w-full" />
+        </div>
+    )
 }
 
 export default App
